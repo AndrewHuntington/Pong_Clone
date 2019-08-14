@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +23,13 @@ public class Player_Input_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        LeftPaddleControl();
+        RightPaddleControl(); 
+    }
+
+    private void LeftPaddleControl()
+    {
+        //Stops movement
         leftPaddle.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
         if (Input.GetKey(KeyCode.W))
@@ -33,6 +41,23 @@ public class Player_Input_Controller : MonoBehaviour
         {
             //Move the bat down
             leftPaddle.GetComponent<Rigidbody2D>().velocity = Vector2.down * paddleSpeed;
+        }
+    }
+
+    private void RightPaddleControl()
+    {
+        //Stops movement
+        rightPaddle.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            //Move the bat up
+            rightPaddle.GetComponent<Rigidbody2D>().velocity = Vector2.up * paddleSpeed;
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            //Move the bat down
+            rightPaddle.GetComponent<Rigidbody2D>().velocity = Vector2.down * paddleSpeed;
         }
     }
 }
