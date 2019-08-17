@@ -28,7 +28,7 @@ public class Ball_Controller : MonoBehaviour
         yield return new WaitForSecondsRealtime(timeToWaitInSeconds);
 
         //should reset the ball back to the middle
-        transform.position = Vector2.zero;
+        transform.position = new Vector2(0f, Random.Range(-4, 4));
 
         //determine direction in x and y axes
         int xDirection = Random.Range(0, 2);

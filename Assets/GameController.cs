@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using TMPro;
-using System;
+
 
 public class GameController : MonoBehaviour
 {
@@ -15,6 +12,7 @@ public class GameController : MonoBehaviour
     TextMeshProUGUI rightScore;
     LeftGoalBallIn leftGoal;
     Ball_Controller ballController;
+    SceneController sceneController;
 
 
     // Start is called before the first frame update
@@ -27,6 +25,7 @@ public class GameController : MonoBehaviour
         rightScore.text = rightScoreInt.ToString();
 
         ballController = FindObjectOfType<Ball_Controller>();
+        sceneController = FindObjectOfType<SceneController>();
     }
 
     // Update is called once per frame
@@ -35,25 +34,8 @@ public class GameController : MonoBehaviour
 
     }
 
-    // Can I combine the two goal in functions?
+    // DRY up the two functions below
     public void leftGoalIn()
-    {
-        if (leftScoreInt < 10)
-        {
-            leftScoreInt += 1;
-            leftScore.text = leftScoreInt.ToString();
-            ballController.LaunchBall();
-        }
-        else
-        {
-            leftScoreInt += 1;
-            leftScore.text = leftScoreInt.ToString();
-            print("Right wins!");
-        }
-        
-    }
-
-    public void rightGoalIn()
     {
         if (rightScoreInt < 10)
         {
@@ -65,8 +47,25 @@ public class GameController : MonoBehaviour
         {
             rightScoreInt += 1;
             rightScore.text = rightScoreInt.ToString();
-            print("Left wins!");
+            print("Right wins!");
+            sceneController.gameOn = false;
+        }        
+    }
+
+    public void rightGoalIn()
+    {
+        if (leftScoreInt < 10)
+        {
+            leftScoreInt += 1;
+            leftScore.text = leftScoreInt.ToString();
+            ballController.LaunchBall();
         }
-        
+        else
+        {
+            leftScoreInt += 1;
+            leftScore.text = leftScoreInt.ToString();
+            print("Left wins!");
+            sceneController.gameOn = false;
+        }
     }
 }
