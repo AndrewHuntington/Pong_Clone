@@ -7,8 +7,8 @@ using System;
 
 public class GameController : MonoBehaviour
 {
-    int leftScoreInt = 0;
-    int rightScoreInt = 0;
+    [SerializeField] int leftScoreInt = 0;
+    [SerializeField] int rightScoreInt = 0;
     [SerializeField] GameObject leftScoreText;
     [SerializeField] GameObject rightScoreText;
     TextMeshProUGUI leftScore;
@@ -38,15 +38,35 @@ public class GameController : MonoBehaviour
     // Can I combine the two goal in functions?
     public void leftGoalIn()
     {
-        leftScoreInt += 1;
-        leftScore.text = leftScoreInt.ToString();
-        ballController.LaunchBall();
+        if (leftScoreInt < 10)
+        {
+            leftScoreInt += 1;
+            leftScore.text = leftScoreInt.ToString();
+            ballController.LaunchBall();
+        }
+        else
+        {
+            leftScoreInt += 1;
+            leftScore.text = leftScoreInt.ToString();
+            print("Right wins!");
+        }
+        
     }
 
     public void rightGoalIn()
     {
-        rightScoreInt += 1;
-        rightScore.text = rightScoreInt.ToString();
-        ballController.LaunchBall();
+        if (rightScoreInt < 10)
+        {
+            rightScoreInt += 1;
+            rightScore.text = rightScoreInt.ToString();
+            ballController.LaunchBall();
+        }
+        else
+        {
+            rightScoreInt += 1;
+            rightScore.text = rightScoreInt.ToString();
+            print("Left wins!");
+        }
+        
     }
 }

@@ -330,7 +330,6 @@ MonoBehaviour:
   ballSpeed: 6
   randomFactor: 0
   rampUpSpeed: 1.1
-  gameController: {fileID: 363708432}
 --- !u!1 &257932297
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0aba406aad347488bcc45e4ced678d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftScoreInt: 9
+  rightScoreInt: 9
   leftScoreText: {fileID: 1164611784}
   rightScoreText: {fileID: 1170536290}
 --- !u!4 &363708433
@@ -813,7 +814,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -11.966339, y: 0, z: 0, w: -38.540222}
+  m_margin: {x: -11.966339, y: 0, z: -38.735596, w: -38.540222}
   m_textInfo:
     textComponent: {fileID: 1164611786}
     characterCount: 2
@@ -971,7 +972,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -11.966339, y: 0, z: 0, w: -38.540222}
+  m_margin: {x: -11.966339, y: 0, z: -35.289032, w: -38.540222}
   m_textInfo:
     textComponent: {fileID: 1170536292}
     characterCount: 2
@@ -1409,6 +1410,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ball
       objectReference: {fileID: 0}
+    - target: {fileID: 5361584808120576437, guid: 660a5b892cc4c31429921c9df8a21370,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5361584808120576443, guid: 660a5b892cc4c31429921c9df8a21370,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1462,11 +1468,6 @@ PrefabInstance:
     - target: {fileID: 5361584808120576443, guid: 660a5b892cc4c31429921c9df8a21370,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5361584808120576437, guid: 660a5b892cc4c31429921c9df8a21370,
-        type: 3}
-      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1552,6 +1553,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Input_Controller
       objectReference: {fileID: 0}
+    - target: {fileID: 8072573035831398071, guid: 5a48bc9fb61a8cd47a00c24716eb6f15,
+        type: 3}
+      propertyPath: leftPaddle
+      value: 
+      objectReference: {fileID: 2002673969}
+    - target: {fileID: 8072573035831398071, guid: 5a48bc9fb61a8cd47a00c24716eb6f15,
+        type: 3}
+      propertyPath: rightPaddle
+      value: 
+      objectReference: {fileID: 1399315248}
     - target: {fileID: 8072573035831398064, guid: 5a48bc9fb61a8cd47a00c24716eb6f15,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1607,16 +1618,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8072573035831398071, guid: 5a48bc9fb61a8cd47a00c24716eb6f15,
-        type: 3}
-      propertyPath: leftPaddle
-      value: 
-      objectReference: {fileID: 2002673969}
-    - target: {fileID: 8072573035831398071, guid: 5a48bc9fb61a8cd47a00c24716eb6f15,
-        type: 3}
-      propertyPath: rightPaddle
-      value: 
-      objectReference: {fileID: 1399315248}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a48bc9fb61a8cd47a00c24716eb6f15, type: 3}
 --- !u!1001 &8830140852532510218
