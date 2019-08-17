@@ -11,7 +11,7 @@ public class Player_Input_Controller : MonoBehaviour
 
     [SerializeField] GameObject leftPaddle;
     [SerializeField] GameObject rightPaddle;
-    [SerializeField] float paddleSpeed = 5f;
+    [SerializeField] float paddleSpeed = 20f;
 
 
     // Start is called before the first frame update

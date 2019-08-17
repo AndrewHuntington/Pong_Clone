@@ -6,19 +6,22 @@ public class Ball_Controller : MonoBehaviour
 {
     [SerializeField] float ballSpeed = 6f;
     [SerializeField] float randomFactor;
-    Rigidbody2D rb;    
+    [SerializeField] [Tooltip("1 = no change; 2 = double speed each time the ball hits a paddle")] [Range(1, 2)] float rampUpSpeed = 1.1f;
+    Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        //Ball chooses a direction
-        //Flies in that direction
         rb = GetComponent<Rigidbody2D>();
-        LaunchBall();
+        StartCoroutine(LaunchBall());
+        
     }
 
-    private void LaunchBall()
+    private IEnumerator LaunchBall()
     {
+        //remove magic number
+        yield return new WaitForSecondsRealtime(2);
+
         //determine direction in x and y axes
         int xDirection = Random.Range(0, 2);
         int yDirection = Random.Range(0, 3);
@@ -56,11 +59,12 @@ public class Ball_Controller : MonoBehaviour
         randomFactor = Random.Range(-1f, 1f);
     }
 
+    // When we hit something else...
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Paddle")
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + randomFactor);
+            rb.velocity = new Vector2(rb.velocity.x * rampUpSpeed, rb.velocity.y + randomFactor * rampUpSpeed);
         }
     }
 }
