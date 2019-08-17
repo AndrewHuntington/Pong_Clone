@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     TextMeshProUGUI leftScore;
     TextMeshProUGUI rightScore;
     LeftGoalBallIn leftGoal;
+    Ball_Controller ballController;
 
 
     // Start is called before the first frame update
@@ -24,6 +25,8 @@ public class GameController : MonoBehaviour
 
         leftScore.text = leftScoreInt.ToString();
         rightScore.text = rightScoreInt.ToString();
+
+        ballController = FindObjectOfType<Ball_Controller>();
     }
 
     // Update is called once per frame
@@ -37,11 +40,13 @@ public class GameController : MonoBehaviour
     {
         leftScoreInt += 1;
         leftScore.text = leftScoreInt.ToString();
+        ballController.LaunchBall();
     }
 
     public void rightGoalIn()
     {
         rightScoreInt += 1;
         rightScore.text = rightScoreInt.ToString();
+        ballController.LaunchBall();
     }
 }

@@ -6,21 +6,29 @@ public class Ball_Controller : MonoBehaviour
 {
     [SerializeField] float ballSpeed = 6f;
     [SerializeField] float randomFactor;
-    [SerializeField] [Tooltip("1 = no change; 2 = double speed each time the ball hits a paddle")] [Range(1, 2)] float rampUpSpeed = 1.1f;
+    [SerializeField] [Tooltip("1 = no change; 2 = double speed each time the ball hits a paddle")]
+        [Range(1, 2)] float rampUpSpeed = 1.1f;
     Rigidbody2D rb;
+    float timeToWaitInSeconds = 2f;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(LaunchBall());
-        
+        LaunchBall();       
     }
 
-    private IEnumerator LaunchBall()
+    public void LaunchBall()
     {
-        //remove magic number
-        yield return new WaitForSecondsRealtime(2);
+        StartCoroutine(BallLauncher());
+    }
+
+    private IEnumerator BallLauncher()
+    {
+        yield return new WaitForSecondsRealtime(timeToWaitInSeconds);
+
+        //should reset the ball back to the middle
+        transform.position = Vector2.zero;
 
         //determine direction in x and y axes
         int xDirection = Random.Range(0, 2);
