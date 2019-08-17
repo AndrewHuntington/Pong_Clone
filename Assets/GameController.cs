@@ -8,8 +8,14 @@ public class GameController : MonoBehaviour
     [SerializeField] int rightScoreInt = 0;
     [SerializeField] GameObject leftScoreText;
     [SerializeField] GameObject rightScoreText;
+    [SerializeField] GameObject winCanvas;
+    [SerializeField] GameObject optionsCanvas;
+
     TextMeshProUGUI leftScore;
     TextMeshProUGUI rightScore;
+    TextMeshProUGUI winnerText; // display if right or left won
+    TextMeshProUGUI playAgainOrQuitText; // give options to play again or quit
+
     LeftGoalBallIn leftGoal;
     Ball_Controller ballController;
     SceneController sceneController;
@@ -26,6 +32,10 @@ public class GameController : MonoBehaviour
 
         ballController = FindObjectOfType<Ball_Controller>();
         sceneController = FindObjectOfType<SceneController>();
+
+        winCanvas.SetActive(false);
+        optionsCanvas.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -48,8 +58,8 @@ public class GameController : MonoBehaviour
             rightScoreInt += 1;
             rightScore.text = rightScoreInt.ToString();
             print("Right wins!");
-            sceneController.gameOn = false;
-        }        
+            GameOver();
+        }
     }
 
     public void rightGoalIn()
@@ -65,7 +75,23 @@ public class GameController : MonoBehaviour
             leftScoreInt += 1;
             leftScore.text = leftScoreInt.ToString();
             print("Left wins!");
-            sceneController.gameOn = false;
+            GameOver();
         }
+    }
+
+    private void GameOver()
+    {
+        sceneController.gameOn = false;
+        winCanvas.SetActive(true);
+        optionsCanvas.SetActive(true);
+        if (leftScoreInt == 11)
+        {
+            winCanvas.GetComponentInChildren<TextMeshProUGUI>().text = "Left Wins!";
+        }
+        else
+        {
+            winCanvas.GetComponentInChildren<TextMeshProUGUI>().text = "Right Wins!";
+        }
+        
     }
 }
